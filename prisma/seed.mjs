@@ -14,7 +14,7 @@ async function main() {
             {
                 name: "Charmander",
                 types: ["fire"],
-                sprite: "https://pokemon.com/pictures/charmander.png"
+                sprite: "https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/004.png"
             },
             // Add more Pokemon here...
         ],
