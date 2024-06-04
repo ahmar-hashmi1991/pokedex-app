@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && next build",
+    "build": "docker compose up -d && prisma generate && prisma migrate deploy && next build",
     "seed": "ts-node prisma/seed.mjs",
     "start": "next start",
     "lint": "next lint",
