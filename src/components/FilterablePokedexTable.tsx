@@ -1,10 +1,10 @@
 import debounce from 'lodash/debounce';
 import React, { useCallback, useEffect, useState } from 'react';
 import { trpc } from '../utils/trpc';
-import { PokemonTable } from './PokemonTable';
+import { PokedexTable } from './PokedexTable';
 import { PokemonTypeSelection } from './PokemonTypeSelection';
 
-export const FilterablePokemonTable: React.FC = () => {
+export const FilterablePokedexTable: React.FC = () => {
     const [selectedType, setSelectedType] = useState<string | undefined>(undefined);
     const [error, setError] = useState<string | null>(null);
 
@@ -34,11 +34,13 @@ export const FilterablePokemonTable: React.FC = () => {
 
     return (
         <div className="container">
-            <PokemonTypeSelection selectedType={selectedType} selectType={handleTypeSelection} />
+            <form className="form-container">
+                <PokemonTypeSelection selectedType={selectedType} selectType={handleTypeSelection} />
+            </form>
 
             {isLoading && <div>Loading...</div>}
             {error && <div>Error: {error}</div>}
-            {pokemonArray && <PokemonTable pokemonArray={pokemonArray} />}
+            {pokemonArray && <PokedexTable pokemonArray={pokemonArray} />}
         </div>
     );
 };

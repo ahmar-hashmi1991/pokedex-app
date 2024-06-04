@@ -10,7 +10,7 @@ const types = ['grass', 'fire', 'water', 'electric', 'rock', 'ground', 'psychic'
 export const PokemonTypeSelection: React.FC<PokemonTypeSelectionProps> = ({ selectedType, selectType }) => {
     return (
         <select value={selectedType} onChange={(e) => selectType(e.target.value)}>
-            <option value="">All Types</option>
+            <option value="">Select Type</option>
             {types.map((type) => (
                 <option key={type} value={type}>
                     {type}

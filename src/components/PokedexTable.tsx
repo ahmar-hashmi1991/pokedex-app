@@ -7,11 +7,11 @@ interface Pokemon {
     sprite: string;
 }
 
-interface PokemonTableProps {
+interface PokedexTableProps {
     pokemonArray: Pokemon[];
 }
 
-export const PokemonTable: React.FC<PokemonTableProps> = ({ pokemonArray }) => {
+export const PokedexTable: React.FC<PokedexTableProps> = ({ pokemonArray }) => {
     return (
         <table>
             <thead>

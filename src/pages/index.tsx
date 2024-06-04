@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
 import { useState } from 'react';
+import { FilterablePokedexTable } from '../components/FilterablePokedexTable';
+import { PokedexTable } from '../components/PokedexTable';
 import { PokemonRow } from '../components/PokemonRow';
-import { PokemonTable } from '../components/PokemonTable';
-import { PokemonTypeSelection } from '../components/PokemonTypeSelection';
 import { trpc } from '../utils/trpc';
 
 const Home: NextPage = () => {
@@ -62,8 +62,8 @@ const Home: NextPage = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSingleSubmit}>
+        <div className="container">
+            <form className="form-container" onSubmit={handleSingleSubmit}>
                 <input
                     type="text"
                     value={singleInput}
@@ -73,7 +73,14 @@ const Home: NextPage = () => {
                 <button type="submit">Fetch Pokémon</button>
             </form>
 
-            <form onSubmit={handleArraySubmit}>
+            {(singlePokemonQuery.isFetching || pokemonArrayQuery.isFetching) && <div>Loading...</div>}
+            {error && <div>Error: {error}</div>}
+
+            {!singlePokemonQuery.isFetching && !error && isSingleSubmitted && singlePokemonQuery.data && (
+                <PokemonRow pokemon={singlePokemonQuery.data} />
+            )}
+
+            <form className="form-container" onSubmit={handleArraySubmit}>
                 <input
                     type="text"
                     value={arrayInput}
@@ -83,22 +90,11 @@ const Home: NextPage = () => {
                 <button type="submit">Fetch Pokémon Array</button>
             </form>
 
-            <PokemonTypeSelection selectedType={selectedType} selectType={handleTypeSelection} />
-
-            {(singlePokemonQuery.isFetching || pokemonArrayQuery.isFetching) && <div>Loading...</div>}
-            {error && <div>Error: {error}</div>}
-
-            {!singlePokemonQuery.isFetching && !error && isSingleSubmitted && singlePokemonQuery.data && (
-                <PokemonRow pokemon={singlePokemonQuery.data} />
-            )}
-
             {!pokemonArrayQuery.isFetching && !error && isArraySubmitted && pokemonArrayQuery.data && (
-                <PokemonTable pokemonArray={pokemonArrayQuery.data} />
+                <PokedexTable pokemonArray={pokemonArrayQuery.data} />
             )}
 
-            {!pokemonByTypeQuery.isFetching && !error && isTypeSelected && pokemonByTypeQuery.data && (
-                <PokemonTable pokemonArray={pokemonByTypeQuery.data} />
-            )}
+            <FilterablePokedexTable />
         </div>
     );
 };

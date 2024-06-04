@@ -3,6 +3,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AppProps } from 'next/app';
 import { useState } from 'react';
+import "../styles/globals.css";
+//import "~/src/styles/globals.css";
 import { trpc } from '../utils/trpc';
 
 // Create a default Material-UI theme
