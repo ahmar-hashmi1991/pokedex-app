@@ -5,24 +5,17 @@ type PokemonTypeSelectionProps = {
     selectType: (type: string | undefined) => void;
 };
 
-const types = ['grass', 'fire', 'water', 'electric', 'rock', 'ground', 'psychic', 'ghost', 'normal', 'fighting', 'bug', 'poison', 'flying'];
+const types = ['grass', 'fire', 'water', 'electric', 'rock', 'ground', 'psychic', 'ghost', 'fairy', 'poison'];
 
 export const PokemonTypeSelection: React.FC<PokemonTypeSelectionProps> = ({ selectedType, selectType }) => {
     return (
-        <div>
-            <label htmlFor="pokemon-type">Select Pokémon Type:</label>
-            <select
-                id="pokemon-type"
-                value={selectedType}
-                onChange={(e) => selectType(e.target.value)}
-            >
-                <option value="">All</option>
-                {types.map((type) => (
-                    <option key={type} value={type}>
-                        {type}
-                    </option>
-                ))}
-            </select>
-        </div>
+        <select value={selectedType} onChange={(e) => selectType(e.target.value)}>
+            <option value="">All Types</option>
+            {types.map((type) => (
+                <option key={type} value={type}>
+                    {type}
+                </option>
+            ))}
+        </select>
     );
 };
